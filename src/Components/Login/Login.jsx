@@ -153,7 +153,7 @@ const handleUserChange = (e) => {
                     <CiLock className='iconll' />
                 </div>
                 <div className='forgotl'>
-                     <input type='checkbox' /><span>Remember me</span> {/*checked={rememberMe} onChange={handleRememberMeChange}*/}
+                     <input type='checkbox' /><span>Remember me</span> checked={rememberMe} onChange={handleRememberMeChange}
                     <a href='ForgotPassword' className='f'>Forgot Password?</a>
                 </div>
                 <div>
