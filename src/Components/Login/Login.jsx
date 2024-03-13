@@ -16,6 +16,12 @@ const Login = () => {
     const dispatch = useDispatch();
     const location=useLocation();
     const navigate = useHistory();
+    const [rememberMe, setRememberMe] = useState(false);
+
+    const handleRememberMeChange = () => {
+        setRememberMe(!rememberMe);
+    };
+
 
 useEffect(() => {
         const registeredEmail = localStorage.getItem('registeredEmail');
@@ -39,6 +45,16 @@ useEffect(() => {
             fetchUserName();
         }
     }, [email]);
+
+    useEffect(() => {
+            const storedUser = localStorage.getItem('rememberedUser');
+            const storedPassword = localStorage.getItem('loginPassword');
+            if (storedUser && storedPassword) {
+                setEmail(storedUser);
+                setPassword(storedPassword);
+                setRememberMe(true);
+            }
+        }, []);
 
 const handleUserChange = (e) => {
     setEmail(e.target.value);
@@ -75,6 +91,13 @@ const handleUserChange = (e) => {
                 }, 1500); 
                 
                 toast.success("Login Successfully!")
+                if (rememberMe) {
+                                localStorage.setItem('rememberedUser', user);
+                                localStorage.setItem('rememberedPassword', password);
+                            } else {
+                                localStorage.removeItem('rememberedUser');
+                                localStorage.removeItem('rememberedPassword');
+                            }
                 localStorage.setItem("loggedEmail",JSON.stringify({
                     email,
                     id
