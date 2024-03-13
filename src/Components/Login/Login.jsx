@@ -16,6 +16,8 @@ const Login = () => {
     const dispatch = useDispatch();
     const location=useLocation();
     const navigate = useHistory();
+
+    //Remember me
     const [rememberMe, setRememberMe] = useState(false);
 
     const handleRememberMeChange = () => {
